@@ -1,1 +1,28 @@
 @import "bootstrap/dist/css/bootstrap";
+
+.navbar {
+	background-color: #000;
+	#logo {
+		float: left;
+		font-size: 1.7em;
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: -1px;
+		font-weight: bold;
+	}
+	.nav-link {
+		color: #fff !important;
+	}
+}
+
+#home-container {
+	margin-top: 32px;
+}
+
+.jumbotron {
+	background-image: asset-url("typing.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 425px;
+}
