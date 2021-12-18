@@ -22,7 +22,11 @@
         </div>
 
         <div class="form-group row justify-content-center">
+        <% if @article.id.nil? %>
+          <%= f.submit "Create article", class:"btn btn-outline-light btn-lg" %>
+        <% else %>
           <%= f.submit "Update article", class:"btn btn-outline-light btn-lg" %>
+        <% end %>
         </div>
 
       <% end %>
