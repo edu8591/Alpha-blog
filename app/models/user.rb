@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :articles
 	VALID_EMAIL_REGEX = /\A(\w*)(@)(\w*)(\.\w{2,4})\z/i
 	validates :username, presence: true, uniqueness: { case_sensitive: false }
 	validates :username, length: { within: 3..25 }
