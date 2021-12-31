@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
 	def show; end
 
+	def index
+		@users = User.all
+	end
+
 	def create
 		@user = User.new(user_params)
 		if @user.save
@@ -22,7 +26,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:notice] = 'your account information was updated succesfully'
-			redirect_to articles_path
+			redirect_to user_path(@user)
 		else
 			render 'edit'
 		end
