@@ -1,15 +1,8 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: %i[edit update show]
+
 	def new
 		@user = User.new
-	end
-
-	def show
-		@articles = @user.articles.paginate(page: params[:page], per_page: 5)
-	end
-
-	def index
-		@users = User.paginate(page: params[:page], per_page: 5)
 	end
 
 	def create
@@ -21,6 +14,14 @@ class UsersController < ApplicationController
 		else
 			render 'new'
 		end
+	end
+
+	def show
+		@articles = @user.articles.paginate(page: params[:page], per_page: 5)
+	end
+
+	def index
+		@users = User.paginate(page: params[:page], per_page: 5)
 	end
 
 	def edit; end
