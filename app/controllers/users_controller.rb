@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: %i[edit update show destroy]
-	before_action :require_user, except: %i[new show index]
+	before_action :require_user, except: %i[new show index create]
 	before_action :require_same_user, only: %i[edit update destroy]
 	def new
 		@user = User.new
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
 	def destroy
 		@user.destroy
-		session[:user_id] = nil
+		session[:user_id] = nil if @user == current_user
 		flash[:notice] = 'Account and all associated articles successfully deleted'
 		redirect_to root_path
 	end
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 	end
 
 	def require_same_user
-		if @user != current_user
+		if @user != current_user && !current_user.admin?
 			flash[:alert] = 'You can only update or delete your own profile'
 			redirect_to user_path(@user)
 		end
