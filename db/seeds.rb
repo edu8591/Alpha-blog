@@ -11,7 +11,7 @@ puts 'All users destroyed successfully'
 puts 'Creating 30 Users'
 count = 1
 30.times do
-	username = Faker::Name.first_name
+	username = Faker::Name.unique.first_name
 	puts "creating user ##{count} username: #{username}"
 	count += 1
 
