@@ -2,13 +2,7 @@ require 'test_helper'
 
 class CreateCategoryTest < ActionDispatch::IntegrationTest
 	setup do
-		@admin_user =
-			User.create(
-				username: 'adminuser',
-				email: 'adminuser@gmail.com',
-				password: 'password',
-				admin: true,
-			)
+		@admin_user = create_admin
 		sign_in_as(@admin_user)
 	end
 	test 'Get the new category form and creating category' do
@@ -30,8 +24,6 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
 			post categories_path, params: { category: { name: ' ' } }
 		end
 
-		assert_match 'error', response.body
-		assert_select 'div.alert'
-		assert_select 'h4.alert-heading'
+		assert_match_alerts
 	end
 end

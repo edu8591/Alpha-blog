@@ -19,4 +19,23 @@ class ActiveSupport::TestCase
 				},
 		     }
 	end
+
+	def create_admin
+		User.create(
+			username: 'adminuser',
+			email: 'adminuser@gmail.com',
+			password: 'password',
+			admin: true,
+		)
+	end
+
+	def create_user
+		User.create(username: 'user', email: 'user@gmail.com', password: 'password')
+	end
+
+	def assert_match_alerts
+		assert_match 'error', response.body
+		assert_select 'div.alert'
+		assert_select 'h4.alert-heading'
+	end
 end
